@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>To do List</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Lista de tarefas</h1>
+        <div class="tarefa-container" c-container="{{url_for('tarefa.editar_tarefa')}}">
+            <form class="c-form"
+                {% if not tarefa %}
+                    action="{{url_for('tarefa.inserir_tarefa')}}" method="post" c-type="html" c-append="#lista" c-reset="true" >
+                {% else %}
+                    action="{{url_for('tarefa.atualizar_tarefa')}}" method="PUT" c-type="html" c-reload-container=".tarefa-container" c-swap="#form-tarefa"
+                {% endif %}
+                <input type="text" name=nome id="nova-task" placeholder="Adicione uma nova tarefa..." value="light" autofocus>
+                <input type="datetime-local" name=data id="data-task" placeholder="data">
+                <button id="add-task-btn">Adicionar</button>
+            </form>
+            <ul id="lista">
+                <!-- As tarefas serão adicionadas aqui -->
+                <div c-container="{{url_for('tarefa.listar_tarefas')}}" id="form-t"></div>
+                <!-- Modal -->
+                    <input type="checkbox" id="modal-toggle" class="modal-toggle">
+                    <div class="modal">
+                        <div class="modal-content">
+                            <div id="modal-content" class="modal-body">
+                                <!-- O conteúdo do modal será carregado aqui dinamicamente -->
+                            </div>
+                            <!-- Botão de fechar dentro da caixa do modal -->
+                            <label class="close-btn" for="modal-toggle">Fechar</label>
+                        </div>
+                    </div>
+            </ul>
+        </div>
+        <script src="{{ url_for('static', filename='cru.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+/* Estilos gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #121212; /* Fundo escuro */
+    color: #e0e0e0; /* Texto claro */
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #1f1f1f; /* Fundo escuro para a caixa */
+    width: 90%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra mais escura */
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff; /* Título em branco */
+}
+
+.tarefa-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.c-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.c-form input,
+#add-task-btn {
+    padding: 10px;
+    border: 2px solid #333; /* Bordas mais escuras */
+    background-color: #333; /* Fundo mais escuro para os inputs */
+    color: #e0e0e0; /* Texto claro */
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s, background-color 0.3s; /* Transição para borda e fundo */
+    width: 100%;
+}
+
+#nova-task:focus,
+#data-task:focus {
+    border-color: #1e88e5; /* Azul para o foco */
+    background-color: #444; /* Fundo mais escuro no foco */
+}
+
+#add-task-btn {
+    background-color: #1e88e5; /* Azul para o botão */
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+#add-task-btn:hover {
+    background-color: #1565c0; /* Azul mais escuro ao passar o mouse */
+}
+
+#lista {
+    list-style-type: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#lista li {
+    background-color: #2a2a2a; /* Fundo mais escuro para os itens da lista */
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+    color: #e0e0e0; /* Texto claro */
+}
+
+/* Checkbox circular */
+#lista li input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; /* Torna a checkbox circular */
+    border: 2px solid #333;
+    margin-right: 20px; /* Aumenta o espaço entre a checkbox e o texto */
+    accent-color: #1e88e5; /* Cor de destaque da checkbox */
+}
+
+/* Estilo do texto da tarefa */
+#lista li span {
+    flex-grow: 1; /* Permite que o texto cresça para preencher o espaço */
+    margin-right: 20px; /* Adiciona espaço entre o texto e os botões */
+}
+
+/* Estilo dos botões de ação */
+.action-buttons {
+    display: flex;
+    gap: 15px; /* Mais espaço entre os botões */
+}
+
+.view-btn,
+.edit-btn,
+.remove-btn {
+    background-color: transparent; /* Fundo transparente */
+    color: #e0e0e0; /* Cor do texto */
+    border: none; /* Sem borda */
+    cursor: pointer;
+    font-size: 1.2rem; /* Tamanho da fonte maior */
+    transition: color 0.3s; /* Transição suave para mudança de cor */
+}
+
+.view-btn:hover,
+.edit-btn:hover,
+.remove-btn:hover {
+    color: #1e88e5; /* Azul claro ao passar o mouse */
+}
+
+/* Estilos do modal */
+.modal {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que o modal fique sobre outros elementos */
+}
+
+/* Conteúdo do Modal */
+.modal-content {
+    background-color: #2a2a2a; /* Fundo do modal */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Borda arredondada */
+    width: 90%;
+    max-width: 500px; /* Largura máxima do modal */
+    color: #e0e0e0; /* Cor do texto */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    display: flex;
+    flex-direction: column; /* Alinhamento em coluna para conteúdo */
+    gap: 20px; /* Espaçamento entre os elementos do modal */
+    height: auto; /* Permite que o modal cresça com o conteúdo */
+    max-height: 80vh; /* Altura máxima do modal */
+    overflow-y: auto; /* Adiciona rolagem se necessário */
+}
+
+/* Título e parágrafo do Modal */
+.modal-title {
+    font-size: 1.5rem; /* Tamanho da fonte do título */
+    font-weight: 500; /* Peso da fonte do título */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+}
+
+.modal-due-date {
+    font-size: 1.2rem; /* Tamanho da fonte do prazo */
+    color: #b0b0b0; /* Cor do prazo */
+}
+
+/* Botão de fechar dentro do modal */
+.close-btn {
+    background-color: #f44336; /* Cor de fundo do botão de fechar */
+    color: white; /* Cor do texto */
+    border: none;
+    padding: 10px 20px; /* Aumenta o espaçamento interno */
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: flex-end; /* Alinha o botão à direita */
+    margin-top: auto; /* Empurra o botão para o final do modal */
+    text-align: center;
+}
+
+/* Controle do modal usando checkbox */
+.modal-toggle {
+    display: none; /* Oculta o checkbox de controle do modal */
+}
+
+#modal-toggle:checked ~ .modal {
+    display: flex; /* Mostra o modal quando o checkbox está marcado */
+}
+
+/* Título e parágrafo do Modal */
+.modal-title {
+    font-size: 1.5rem; /* Tamanho da fonte do título */
+    font-weight: 500; /* Peso da fonte do título */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+}
+
+.modal-date {
+    font-size: 1.2rem; /* Tamanho da fonte do prazo */
+    color: #b0b0b0; /* Cor do prazo */
+}
+/* Estilo da checkbox circular */
+.checkbox {
+    width: 20px; /* Largura do checkbox */
+    height: 20px; /* Altura do checkbox */
+    border-radius: 50%; /* Torna a checkbox circular */
+    border: 2px solid #333; /* Borda do checkbox */
+    margin-right: 20px; /* Espaço entre o checkbox e o texto */
+    accent-color: #1e88e5; /* Cor de destaque do checkbox (para navegadores que suportam) */
+    appearance: none; /* Remove o estilo padrão do checkbox */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    position: relative; /* Necessário para o estado de seleção */
+}
+
+/* Estilo quando o checkbox está marcado */
+.checkbox:checked::before {
+    content: ""; /* Adiciona um conteúdo vazio */
+    display: block;
+    width: 12px; /* Largura do checkmark */
+    height: 12px; /* Altura do checkmark */
+    border-radius: 50%; /* Torna o checkmark circular */
+    background: #1e88e5; /* Cor do checkmark */
+    position: absolute;
+    top: 4px; /* Ajusta a posição do checkmark dentro do checkbox */
+    left: 4px; /* Ajusta a posição do checkmark dentro do checkbox */
+}
+
