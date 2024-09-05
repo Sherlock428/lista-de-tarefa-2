@@ -1,9 +1,9 @@
-<li id="form-tarefa">
+<li id="tarefa-{{tarefa.id}}">
     <input type="checkbox" name="tarefa" id="checkbox">
     <span>{{ tarefa.Nome }}</span>
     <div class="Action-buttons">
         <label class="view-btn" for="modal-toggle" c-get="{{url_for('tarefa.detalhe_tarefa', tarefa_id=tarefa.id)}}" c-target="#modal-content">👁️</label>
-        <button class="edit-btn" c-get="{{url_for('tarefa.editar_tarefa', tarefa_id=tarefa.id)}}" c-target=".tarefa-container" >✏️</button>
+        <button class="edit-btn" c-get="{{ url_for('tarefa.editar_tarefa', tarefa_id=tarefa.id) }}" c-target="#form-tarefa">✏️</button>
         <button class="remove-btn" c-delete="{{url_for('tarefa.deletar_tarefa', tarefa_id=tarefa.id)}}" c-remove-closest="li">🗑️</button>
     </div>
 </li>

@@ -1,0 +1,19 @@
+<form class="c-form"
+                {% if not tarefa %} 
+                    action="{{url_for('tarefa.inserir_tarefa')}}"
+                    method="post"
+                    c-append="#lista"
+                    c-reset="true"
+                {% else %}
+                    action="{{url_for('tarefa.atualizar_tarefa', tarefa_id=tarefa.id)}}"
+                    method="PUT"
+                    c-swap="#tarefa-{{tarefa.id}}"
+                    c-reload-container="#form-tarefa"
+                {% endif %}
+                c-type="html">
+
+                
+                <input type="text" name=nome id="nova-task" placeholder="Adicione uma nova tarefa..." value="{{ tarefa.Nome if tarefa else ''}}">
+                <input type="datetime-local" name=data id="data-task" placeholder="data" value="{{ tarefa.Prazo if tarefa else ''}}">
+                <button id="add-task-btn">{{'Salvar' if tarefa else 'Adicionar'}}</button>
+            </form>

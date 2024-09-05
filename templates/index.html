@@ -10,17 +10,9 @@
 <body>
     <div class="container">
         <h1 class="title">Lista de tarefas</h1>
-        <div class="tarefa-container" c-container="{{url_for('tarefa.editar_tarefa')}}">
-            <form class="c-form"
-                {% if not tarefa %}
-                    action="{{url_for('tarefa.inserir_tarefa')}}" method="post" c-type="html" c-append="#lista" c-reset="true" >
-                {% else %}
-                    action="{{url_for('tarefa.atualizar_tarefa')}}" method="PUT" c-type="html" c-reload-container=".tarefa-container" c-swap="#form-tarefa"
-                {% endif %}
-                <input type="text" name=nome id="nova-task" placeholder="Adicione uma nova tarefa..." value="light" autofocus>
-                <input type="datetime-local" name=data id="data-task" placeholder="data">
-                <button id="add-task-btn">Adicionar</button>
-            </form>
+        <div class="tarefa-container">
+            <div id="form-tarefa" c-container="{{url_for('tarefa.formulario_tarefa')}}">
+            </div>
             <ul id="lista">
                 <!-- As tarefas serão adicionadas aqui -->
                 <div c-container="{{url_for('tarefa.listar_tarefas')}}" id="form-t"></div>
